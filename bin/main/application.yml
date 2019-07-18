@@ -1,0 +1,24 @@
+# 共通の設定を定義する
+spring:
+    profiles:
+        # デフォルトを明示的に指定する
+        # 開発環境以外は環境変数でプロファイルを切り替える
+        default: development
+        active: development
+    # DBの設定
+    datasource:
+        driver-class-name: org.postgresql.Driver
+        url: jdbc:postgresql://localhost:5432/postgres
+        username: postgres
+        password: docker
+    # Migrationの設定
+    flyway:
+      enabled: true
+      baseline-on-migrate: true
+
+# Doma2
+doma:
+    dialect: postgres
+    # 小文字のスネークケースに変換する（firstName → first_name）
+    naming: SNAKE_LOWER_CASE
+    
