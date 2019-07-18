@@ -6,5 +6,6 @@ CREATE TABLE IF NOT EXISTS code_category (
    , created_at timestamp
    , updated_by character varying(50)
    , updated_at timestamp
+   , version int
    , PRIMARY KEY (code_category_id)
 );
