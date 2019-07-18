@@ -16,5 +16,11 @@ application.yamlに記載が必要。設定しないとInitializedのエラー�
 ModelMapperを使用している。＠Beanクラスでないので、まずBeanにしてから。
 コントローラで使うため定義
 
+## できていないこと
+
+・identityエラーが発生する
+・setAttributeのエラーメッセージ
+ →　setFlashAttributeErrorsはだめっぽい
+ 　return list(model) これで元の画面に返す
 
 
