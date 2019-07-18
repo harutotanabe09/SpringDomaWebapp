@@ -18,6 +18,7 @@ spring:
 
 # Doma2
 doma:
+    # 方言の設定
     dialect: postgres
     # 小文字のスネークケースに変換する（firstName → first_name）
     naming: SNAKE_LOWER_CASE
