@@ -21,16 +21,13 @@ public abstract class AbstractHtmlController extends BaseController  {
      * @return
      */
     public boolean hasErrors(Model model) {
-        val errors = model.asMap().get("error");
-
+        val errors = model.asMap().get("errors");
         if (errors != null && errors instanceof BeanPropertyBindingResult) {
             val br = ((BeanPropertyBindingResult) errors);
-
             if (br.hasErrors()) {
                 return true;
             }
         }
-
         return false;
     }
 
@@ -41,6 +38,16 @@ public abstract class AbstractHtmlController extends BaseController  {
      * @param result
      */
     public void setFlashAttributeErrors(RedirectAttributes attributes, BindingResult result) {
-        attributes.addFlashAttribute("error", result);
+        attributes.addFlashAttribute("errors", result);
+    }
+
+    /**
+     * リダイレクト先に入力成功を渡します。
+     *
+     * @param attributes
+     * @param result
+     */
+    public void setFlashAttributeSuccess(RedirectAttributes attributes) {
+        attributes.addFlashAttribute("success", "customer success");
     }
 }

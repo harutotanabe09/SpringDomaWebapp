@@ -53,7 +53,7 @@ public class CodeCategoryHtmlController extends AbstractHtmlController {
      * @return
      */
     @GetMapping("/new")
-    public String newCode(@ModelAttribute("codeCategoryForm") CodeCategoryForm form, Model model) {
+    public String create(@ModelAttribute("codeCategoryForm") CodeCategoryForm form, Model model) {
         if (!form.isNew()) {
             // SessionAttributeに残っている場合は再生成する
             model.addAttribute("codeCategoryForm", new CodeCategoryForm());
@@ -70,22 +70,19 @@ public class CodeCategoryHtmlController extends AbstractHtmlController {
      * @return
      */
     @PostMapping("/new")
-    public String newCode(@Validated @ModelAttribute("codeCategoryForm") CodeCategoryForm form, BindingResult br,
-            RedirectAttributes attributes) {
+    public String create(@Validated @ModelAttribute("codeCategoryForm") CodeCategoryForm form, BindingResult br,
+            RedirectAttributes attributes, Model model) {
         // 入力チェックエラーがある場合は、元の画面にもどる
         if (br.hasErrors()) {
-            setFlashAttributeErrors(attributes, br);
-            return "redirect:/system/code_categories/new";
+        	return create(form, model);
         }
-
         // 入力値からDTOを作成する
         val inputCodeCategory = modelMapper.map(form, CodeCategory.class);
         inputCodeCategory.setCodeCategoryId(100L);
-
         // 登録
         val createdCodeCategory = codeCategoryService.create(inputCodeCategory);
         log.info(createdCodeCategory + " result --- ");
+        setFlashAttributeSuccess(attributes);
         return  "redirect:/system/code_categories/new";
     }
-
 }
