@@ -15,6 +15,15 @@ spring:
     flyway:
       enabled: true
       baseline-on-migrate: true
+    thymeleaf:
+      cache: true
+      # HTML5モードが非推奨になったのでHTMLモードにする
+      mode: HTML
+    resources:
+      # 静的コンテンツをキャッシュする
+      cache:
+        period: 604800
+
 
 # Doma2
 doma:
@@ -23,4 +32,5 @@ doma:
     # 小文字のスネークケースに変換する（firstName → first_name）
     naming: SNAKE_LOWER_CASE
     
+
     
